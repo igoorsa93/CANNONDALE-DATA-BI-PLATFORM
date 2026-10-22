@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# OS / OneDrive
+Thumbs.db
+desktop.ini
+
+# Dados grandes / temporários
+data/images/*.jpg
+data/images/*.png
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+
+# Power BI
+*.pbix

@@ -1,0 +1,288 @@
+{
+  "timestamp": "2026-10-07T10:13:50.866332",
+  "pipeline_version": "1.0",
+  "environment": "development",
+  "catalogo": {
+    "total_produtos": 32,
+    "produtos_oficiais": 32,
+    "por_categoria": {
+      "Road": 16,
+      "Mountain": 12,
+      "Electric": 4
+    },
+    "por_subcategoria": {
+      "Race": 12,
+      "Cross Country": 11,
+      "E-MTB": 4,
+      "Gravel": 4,
+      "Trail": 1
+    },
+    "por_plataforma": {
+      "SuperSix EVO": 12,
+      "Scalpel": 9,
+      "Topstone Carbon": 2,
+      "Scalpel HT": 2,
+      "Moterra SL": 2,
+      "Topstone Alloy": 1,
+      "SuperX": 1,
+      "Trail": 1,
+      "Moterra Neo": 1,
+      "Moterra Neo LT": 1
+    },
+    "novos": 0,
+    "atualizados": 0,
+    "removidos": 0
+  },
+  "precos": {
+    "produtos_com_preco": 32,
+    "menor_preco": 4990.0,
+    "maior_preco": 134990.0,
+    "preco_medio": 62683.8125
+  },
+  "imagens": {
+    "total_imagens": 105,
+    "imagens_ok": 105,
+    "produtos_com_imagem": 32,
+    "imagens_principais": 1,
+    "imagens_duplicadas": 0
+  },
+  "lojas": {
+    "total_lojas": 54,
+    "brasil": 32,
+    "exterior": 22,
+    "paises": {
+      "Brasil": 32,
+      "EUA": 5,
+      "Reino Unido": 4,
+      "Alemanha": 3,
+      "México": 2,
+      "Holanda": 2,
+      "Espanha": 2,
+      "Austrália": 1,
+      "Itália": 1,
+      "Japão": 1,
+      "Canadá": 1
+    },
+    "regioes": {
+      "Sudeste": 15,
+      "Europa": 12,
+      "Sul": 9,
+      "América do Norte": 8,
+      "Nordeste": 4,
+      "Norte": 2,
+      "Centro-Oeste": 2,
+      "Ásia": 1,
+      "Oceania": 1
+    }
+  },
+  "vendas": {
+    "total_vendas": 11407,
+    "unidades_vendidas": 13386,
+    "faturamento_bruto": 489130204.75,
+    "descontos": 20801999.19,
+    "faturamento_liquido": 468328205.56,
+    "ticket_medio": 35052.3907197335
+  },
+  "estoque": {
+    "estoque_total": 187500,
+    "lojas_critico": 1801,
+    "lojas_normal": 16,
+    "lojas_excesso": 36022,
+    "lojas_atencao": 5361,
+    "produtos_sem_giro": 22,
+    "produtos_alta_demanda": [
+      {
+        "modelo": "Trail 6",
+        "quantidade": 1894
+      },
+      {
+        "modelo": "Topstone 2 CUES 1x",
+        "quantidade": 979
+      },
+      {
+        "modelo": "Scalpel HT Carbon 4",
+        "quantidade": 968
+      },
+      {
+        "modelo": "Scalpel HT Carbon 3",
+        "quantidade": 886
+      },
+      {
+        "modelo": "Topstone Carbon 3 GRX - 1x",
+        "quantidade": 698
+      },
+      {
+        "modelo": "Scalpel 4",
+        "quantidade": 632
+      },
+      {
+        "modelo": "Topstone Carbon 4",
+        "quantidade": 631
+      },
+      {
+        "modelo": "SuperSix EVO 4",
+        "quantidade": 589
+      },
+      {
+        "modelo": "Scalpel 3 Lefty",
+        "quantidade": 553
+      },
+      {
+        "modelo": "Scalpel 3",
+        "quantidade": 549
+      }
+    ]
+  },
+  "qualidade": {
+    "testes_executados": 22,
+    "testes_pass": 20,
+    "testes_fail": 2,
+    "detalhes": [
+      {
+        "name": "produtos_sem_duplicatas_salsify",
+        "passed": true,
+        "message": "No duplicate salsify_ids",
+        "details": {
+          "duplicates": []
+        }
+      },
+      {
+        "name": "produtos_nome_nao_vazio",
+        "passed": true,
+        "message": "All products have names",
+        "details": null
+      },
+      {
+        "name": "produtos_preco_valido",
+        "passed": true,
+        "message": "All products have valid prices",
+        "details": null
+      },
+      {
+        "name": "produtos_categoria_valida",
+        "passed": true,
+        "message": "All categories valid",
+        "details": {
+          "categories": [
+            "Electric",
+            "Mountain",
+            "Road"
+          ]
+        }
+      },
+      {
+        "name": "produtos_url_valida",
+        "passed": true,
+        "message": "All URLs valid",
+        "details": null
+      },
+      {
+        "name": "produtos_codigo_modelo_presente",
+        "passed": true,
+        "message": "All have model codes",
+        "details": null
+      },
+      {
+        "name": "imagens_vinculadas_produto",
+        "passed": true,
+        "message": "All images linked to products",
+        "details": null
+      },
+      {
+        "name": "produtos_com_imagem",
+        "passed": true,
+        "message": "All products have images",
+        "details": null
+      },
+      {
+        "name": "imagem_principal_unica",
+        "passed": true,
+        "message": "Each product has exactly 1 principal image",
+        "details": {
+          "issues": []
+        }
+      },
+      {
+        "name": "arquivos_imagem_existem",
+        "passed": true,
+        "message": "All image files exist locally",
+        "details": null
+      },
+      {
+        "name": "vendas_produto_existente",
+        "passed": true,
+        "message": "All sales reference valid products",
+        "details": null
+      },
+      {
+        "name": "vendas_loja_existente",
+        "passed": true,
+        "message": "All sales reference valid stores",
+        "details": null
+      },
+      {
+        "name": "vendas_calculo_bruto_correto",
+        "passed": true,
+        "message": "All valor_bruto calculations correct",
+        "details": null
+      },
+      {
+        "name": "vendas_calculo_liquido_correto",
+        "passed": true,
+        "message": "All valor_liquido calculations correct",
+        "details": null
+      },
+      {
+        "name": "vendas_quantidade_positiva",
+        "passed": true,
+        "message": "All quantities positive",
+        "details": null
+      },
+      {
+        "name": "estoque_referencias_validas",
+        "passed": true,
+        "message": "All inventory references valid",
+        "details": null
+      },
+      {
+        "name": "estoque_calculo_correto",
+        "passed": false,
+        "message": "243 inventory records with incorrect calculation",
+        "details": null
+      },
+      {
+        "name": "estoque_nao_negativo",
+        "passed": true,
+        "message": "No negative stock",
+        "details": null
+      },
+      {
+        "name": "estoque_vendas_consistentes",
+        "passed": false,
+        "message": "Saidas in inventory (645) != Sales quantity (414)",
+        "details": {
+          "estoque_vendas": 645,
+          "sales_quantidade": 414
+        }
+      },
+      {
+        "name": "estoque_classificacao_valida",
+        "passed": true,
+        "message": "All classifications valid",
+        "details": null
+      },
+      {
+        "name": "lojas_com_coordenadas",
+        "passed": true,
+        "message": "All stores have coordinates",
+        "details": null
+      },
+      {
+        "name": "lojas_brasil_estados_validos",
+        "passed": true,
+        "message": "All BR states valid",
+        "details": null
+      }
+    ]
+  }
+}

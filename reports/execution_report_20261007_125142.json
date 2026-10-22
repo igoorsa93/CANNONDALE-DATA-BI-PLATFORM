@@ -1,0 +1,162 @@
+{
+  "timestamp": "2026-10-07T12:51:42.068367",
+  "pipeline_version": "2.0",
+  "environment": "development",
+  "architecture": "5-table operational structure",
+  "catalogo": {
+    "total_produtos": 32,
+    "produtos_com_preco": 32,
+    "por_categoria": {
+      "Road": 16,
+      "Mountain": 12,
+      "Electric": 4
+    },
+    "por_subcategoria": {
+      "Race": 12,
+      "Cross Country": 11,
+      "E-MTB": 4,
+      "Gravel": 4,
+      "Trail": 1
+    },
+    "por_plataforma": {
+      "SuperSix EVO": 12,
+      "Scalpel": 9,
+      "Moterra SL": 2,
+      "Topstone Carbon": 2,
+      "Scalpel HT": 2,
+      "Trail": 1,
+      "Moterra Neo LT": 1,
+      "SuperX": 1,
+      "Topstone Alloy": 1,
+      "Moterra Neo": 1
+    }
+  },
+  "precos": {
+    "produtos_com_preco": 32,
+    "menor_preco": 4990.0,
+    "maior_preco": 134990.0,
+    "preco_medio": 62683.8125
+  },
+  "imagens": {
+    "total_imagens": 105,
+    "imagens_ok": 105,
+    "produtos_com_imagem": 32,
+    "imagens_principais": 1,
+    "imagens_duplicadas": 0
+  },
+  "lojas": {
+    "total_lojas": 63,
+    "brasil": 36,
+    "exterior": 27,
+    "paises": {
+      "Brasil": 36,
+      "EUA": 4,
+      "Alemanha": 3,
+      "Canadá": 3,
+      "Reino Unido": 2,
+      "Itália": 2,
+      "Portugal": 2,
+      "França": 2,
+      "México": 2,
+      "Japão": 2,
+      "Austrália": 2,
+      "Espanha": 2,
+      "Holanda": 1
+    },
+    "regioes": {
+      "Europa": 14,
+      "Sudeste": 10,
+      "Nordeste": 9,
+      "América do Norte": 9,
+      "Sul": 8,
+      "Norte": 5,
+      "Centro-Oeste": 4,
+      "Ásia": 2,
+      "Oceania": 2
+    }
+  },
+  "vendas": {
+    "total_vendas": 11939,
+    "unidades_vendidas": 14090,
+    "faturamento_bruto": 521971525.42,
+    "descontos": 21545420.9,
+    "faturamento_liquido": 500426104.52,
+    "ticket_medio": 35387.48071725717
+  },
+  "estoque": {
+    "estoque_total": 199603,
+    "registros_critico": 1837,
+    "registros_normal": 13303,
+    "registros_excesso": 27565,
+    "registros_atencao": 7695,
+    "produtos_sem_giro": 25,
+    "produtos_alta_demanda": [
+      {
+        "modelo": "Trail 6",
+        "quantidade": 1975
+      },
+      {
+        "modelo": "Scalpel HT Carbon 4",
+        "quantidade": 1073
+      },
+      {
+        "modelo": "Topstone 2 CUES 1x",
+        "quantidade": 1038
+      },
+      {
+        "modelo": "Scalpel HT Carbon 3",
+        "quantidade": 862
+      },
+      {
+        "modelo": "Scalpel 4",
+        "quantidade": 712
+      },
+      {
+        "modelo": "Topstone Carbon 3 GRX - 1x",
+        "quantidade": 681
+      },
+      {
+        "modelo": "SuperSix EVO 4",
+        "quantidade": 639
+      },
+      {
+        "modelo": "Topstone Carbon 4",
+        "quantidade": 615
+      },
+      {
+        "modelo": "Scalpel 4 Lefty",
+        "quantidade": 606
+      },
+      {
+        "modelo": "Scalpel 3",
+        "quantidade": 586
+      }
+    ]
+  },
+  "logistica": {
+    "por_modal": {
+      "MARITIMA": {
+        "count": 200,
+        "custo_medio": 6737.73405
+      },
+      "AEREA": {
+        "count": 150,
+        "custo_medio": 5378.1006
+      },
+      "RODOVIARIA": {
+        "count": 500,
+        "custo_medio": 1222.50616
+      }
+    },
+    "status": {
+      "Entregue": 189,
+      "Em Trânsito": 191,
+      "Atrasado": 470
+    }
+  },
+  "qualidade": {
+    "testes_executados": 27,
+    "testes_pass": 26,
+    "testes_fail": 1
+  }
+}

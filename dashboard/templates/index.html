@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cannondale Bike Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body class="reduced-motion">
+
+<div class="shell">
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7l9 5 9-5-9-5z"/><path d="M12 17L3 12l9-5 9 5-9 5z"/></svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-name">CANNONDALE</div>
+        <div class="brand-role">Bike Intelligence</div>
+      </div>
+      <div class="brand-divider"></div>
+    </div>
+    <nav class="menu" id="menu">
+      <div class="menu-group">
+        <div class="menu-group-label">Operações</div>
+        <a class="item active" data-page="visao-geral"><span class="ic">&#9632;</span>Visão Geral</a>
+        <a class="item" data-page="comercial"><span class="ic">&#9733;</span>Comercial</a>
+        <a class="item" data-page="produtos"><span class="ic">&#9918;</span>Produtos</a>
+        <a class="item" data-page="estoque"><span class="ic">&#128722;</span>Estoque</a>
+      </div>
+      <div class="menu-group">
+        <div class="menu-group-label">Logística &amp; Rede</div>
+        <a class="item" data-page="lojas"><span class="ic">&#127968;</span>Lojas</a>
+        <a class="item" data-page="transporte"><span class="ic">&#128664;</span>Transporte</a>
+      </div>
+      <div class="menu-group">
+        <div class="menu-group-label">Análise</div>
+        <a class="item" data-page="analises"><span class="ic">&#128204;</span>Relatórios</a>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="footer-label">Sistema</div>
+      <div class="footer-dados" id="footer-dados">
+        <div class="linha"><span class="rotulo">Base</span><span class="valor">PostgreSQL</span></div>
+        <div class="linha"><span class="rotulo">Atualização</span><span class="valor" id="footer-data">–</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="header">
+      <div class="header-left">
+        <button class="nav-toggle" id="nav-toggle"></button>
+        <h1 class="page-title" id="page-title">Visão Geral</h1>
+        <p class="page-lead" id="page-lead">Centro de inteligência operacional</p>
+      </div>
+      <div class="header-right">
+        <div class="status-chip" id="status-chip">
+          <span class="dot"></span>
+          <span class="texto">Dados atualizados</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Área de páginas -->
+    <div class="pages" id="pages">
+
+      <!-- PÁGINA 1: VISÃO GERAL -->
+      <section class="page active" id="page-visao-geral">
+        <div class="hero">
+          <div class="hero-bg"></div>
+          <div class="hero-layer"></div>
+          <div class="hero-content">
+            <div class="hero-meta">
+              <span class="hero-kicker">Cannondale Bike Intelligence</span>
+              <span class="hero-divider">·</span>
+              <span class="hero-plataforma">Plataforma de inteligência operacional</span>
+            </div>
+            <h2 class="hero-titulo">Desempenho, estoque e logística em tempo real.</h2>
+            <p class="hero-subtitulo">Catálogo oficial de bicicletas, faturamento comercial, distribuição de estoque, rede de lojas e operações de transporte integradas a uma única base de dados.</p>
+            <div class="hero-barra">
+              <div class="hero-info">
+                <div class="hero-dado">
+                  <span class="rotulo">Última atualização</span>
+                  <span class="valor" id="hero-data">–</span>
+                </div>
+                <div class="hero-dado">
+                  <span class="rotulo">Produtos no catálogo</span>
+                  <span class="valor" id="hero-produtos">–</span>
+                </div>
+              </div>
+              <div class="hero-acoes">
+                <a class="btn btn-ghost" onclick="app.go('comercial')">Faturamento</a>
+                <a class="btn btn-ghost" onclick="app.go('produtos')">Catálogo</a>
+                <a class="btn btn-ghost" onclick="app.go('estoque')">Estoque</a>
+                <a class="btn btn-ghost" onclick="app.go('transporte')">Logística</a>
+              </div>
+            </div>
+            <div class="hero-bike">
+              <div class="bike-wrap">
+                <img class="bike-img" id="hero-bike-img" src="" alt="Bicicleta Cannondale">
+                <div class="bike-fallback" id="hero-bike-fallback">Sem imagem disponível</div>
+              </div>
+              <div class="bike-badge">Modelo em destaque · Catálogo oficial</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpis">
+          <div class="kpi-bloco grande">
+            <div class="kpi-cabecalho">
+              <span class="kpi-rotulo">Faturamento (90 dias)</span>
+              <span class="kpi-tag">Receita líquida</span>
+            </div>
+            <div class="kpi-valor" id="kpi-faturamento">–</div>
+            <div class="kpi-sub">Unidades vendidas no período: <span id="kpi-unidades">–</span></div>
+          </div>
+          <div class="kpi-bloco medio">
+            <div class="kpi-cabecalho">
+              <span class="kpi-rotulo">Estoque disponível</span>
+              <span class="kpi-tag">Unidades em galpões</span>
+            </div>
+            <div class="kpi-valor" id="kpi-estoque">–</div>
+            <div class="kpi-sub">Valor estimado: <span id="kpi-valor-estoque">–</span></div>
+          </div>
+          <div class="kpi-bloco medio">
+            <div class="kpi-cabecalho">
+              <span class="kpi-rotulo">Rede de lojas</span>
+              <span class="kpi-tag">Unidades ativas</span>
+            </div>
+            <div class="kpi-valor" id="kpi-lojas">–</div>
+            <div class="kpi-sub">Desempenho por região</div>
+          </div>
+          <div class="kpi-bloco pequeno">
+            <div class="kpi-cabecalho">
+              <span class="kpi-rotulo">OTIF Logística</span>
+              <span class="kpi-tag">Entregas no prazo</span>
+            </div>
+            <div class="kpi-valor" id="kpi-otif">–</div>
+            <div class="kpi-sub">Movimentos registrados</div>
+          </div>
+        </div>
+
+        <div class="grid principal">
+          <div class="card largo">
+            <div class="card-cabecalho">
+              <span class="card-chip">Faturamento</span>
+              <span class="card-titulo">Evolução do faturamento mensal</span>
+            </div>
+            <div class="card-corpo"><canvas id="g-faturamento"></canvas></div>
+          </div>
+          <div class="card estreito">
+            <div class="card-cabecalho">
+              <span class="card-chip">Categoria</span>
+              <span class="card-titulo">Faturamento por categoria</span>
+            </div>
+            <div class="card-corpo"><canvas id="g-categoria"></canvas></div>
+          </div>
+          <div class="card estreito">
+            <div class="card-cabecalho">
+              <span class="card-chip">Estoque</span>
+              <span class="card-titulo">Unidades por categoria</span>
+            </div>
+            <div class="card-corpo"><canvas id="g-estoque-cat"></canvas></div>
+          </div>
+        </div>
+        <div class="grid secundario">
+          <div class="card">
+            <div class="card-cabecalho">
+              <span class="card-chip">Lojas</span>
+              <span class="card-titulo">Desempenho por unidade</span>
+            </div>
+            <div class="card-corpo"><div class="twrap"><table class="tabela" id="t-lojas-hero"><thead><tr><th>Loja</th><th>Cidade</th><th>Faturamento</th><th>Pedidos</th></tr></thead><tbody></tbody></table></div></div>
+          </div>
+          <div class="card">
+            <div class="card-cabecalho">
+              <span class="card-chip">Status</span>
+              <span class="card-titulo">Classificação de estoque</span>
+            </div>
+            <div class="card-corpo"><canvas id="g-est-status"></canvas></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PÁGINA 2: COMERCIAL -->
+      <section class="page" id="page-comercial">
+        <div class="panel-head">
+          <h2 class="panel-titulo">Comercial</h2>
+          <p class="panel-sub">Acompanhamento de faturamento, lojas e transações.</p>
+        </div>
+        <div class="toolbar">
+          <div class="filtro">
+            <label class="filtro-label">Período</label>
+            <select id="f-vendas-meses"><option value="6">Últimos 6 meses</option><option value="12" selected>Últimos 12 meses</option><option value="24">Últimos 24 meses</option></select>
+          </div>
+          <div class="filtro">
+            <label class="filtro-label">Categoria</label>
+            <select id="f-vendas-cat"><option value="">Todas as categorias</option></select>
+          </div>
+          <button class="btn btn-primary" onclick="app.carregarComercial()">Atualizar</button>
+        </div>
+        <div class="kpis">
+          <div class="kpi-card"><div class="klabel">Faturamento total</div><div class="kvalor" id="cv-faturamento">–</div><div class="ksub">receita líquida no período</div></div>
+          <div class="kpi-card"><div class="klabel">Unidades vendidas</div><div class="kvalor" id="cv-unidades">–</div><div class="ksub">quantidade de bicicletas</div></div>
+          <div class="kpi-card"><div class="klabel">Pedidos</div><div class="kvalor" id="cv-pedidos">–</div><div class="ksub">transações faturadas</div></div>
+          <div class="kpi-card"><div class="klabel">Ticket médio</div><div class="kvalor" id="cv-ticket">–</div><div class="ksub">valor médio por pedido</div></div>
+        </div>
+        <div class="grid principal">
+          <div class="card largo">
+            <div class="card-cabecalho"><span class="card-chip">Evolução</span><span class="card-titulo">Faturamento ao longo do tempo</span></div>
+            <div class="card-corpo"><canvas id="g-vendas-mensal"></canvas></div>
+          </div>
+          <div class="card estreito">
+            <div class="card-cabecalho"><span class="card-chip">Ranking</span><span class="card-titulo">Lojas por faturamento</span></div>
+            <div class="card-corpo"><canvas id="g-vendas-loja"></canvas></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-cabecalho"><span class="card-chip">Transações</span><span class="card-titulo">Vendas recentes</span></div>
+          <div class="card-corpo"><div class="twrap"><table class="tabela" id="t-vendas"><thead><tr><th>Data</th><th>Produto</th><th>Categoria</th><th>Qtd.</th><th>Valor bruto</th><th>Valor líquido</th><th>Loja</th><th>Cidade</th><th>Pagamento</th><th>Status</th></tr></thead><tbody></tbody></table></div></div>
+        </div>
+      </section>
+
+      <!-- PÁGINA 3: PRODUTOS -->
+      <section class="page" id="page-produtos">
+        <div class="panel-head">
+          <h2 class="panel-titulo">Produtos</h2>
+          <p class="panel-sub">Vitrine de produtos com fotografias oficiais e especificações técnicas.</p>
+        </div>
+        <div class="toolbar">
+          <div class="filtro busca">
+            <label class="filtro-label">Buscar modelo ou SKU</label>
+            <input type="text" id="f-prod-busca" placeholder="Ex: Scalpel, SuperSix, Moterra...">
+          </div>
+          <div class="filtro">
+            <label class="filtro-label">Categoria</label>
+            <select id="f-prod-cat"><option value="">Todas as categorias</option></select>
+          </div>
+          <div class="filtro">
+            <label class="filtro-label">Plataforma</label>
+            <select id="f-prod-plat"><option value="">Todas</option></select>
+          </div>
+          <button class="btn btn-primary" onclick="app.carregarProdutos()">Aplicar filtros</button>
+          <button class="btn btn-ghost" onclick="app.limparFiltrosProdutos()">Limpar</button>
+          <span class="contador" id="contador-prod">0 produtos</span>
+        </div>
+        <div class="catalogo" id="catalogo"></div>
+        <div class="vazio" id="vazio-prod" style="display:none"><div class="vazio-icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="10" cy="10" r="7" stroke-dasharray="4"/></svg></div><p>Nenhum produto encontrado com os filtros aplicados.</p></div>
+      </section>
+
+      <!-- PÁGINA 4: ESTOQUE -->
+      <section class="page" id="page-estoque">
+        <div class="panel-head">
+          <h2 class="panel-titulo">Estoque</h2>
+          <p class="panel-sub">Distribuição de unidades, disponibilidade e movimentações por local.</p>
+        </div>
+        <div class="toolbar">
+          <span class="chip-info">Referência: <b id="estoque-data">–</b></span>
+          <div class="filtro">
+            <label class="filtro-label">Loja</label>
+            <select id="f-estoque-loja"><option value="">Todas as lojas</option></select>
+          </div>
+          <div class="filtro">
+            <label class="filtro-label">Classificação</label>
+            <select id="f-estoque-status"><option value="">Todas</option><option value="Normal">Normal</option><option value="Atencao">Atenção</option><option value="Critico">Crítico</option></select>
+          </div>
+          <button class="btn btn-primary" onclick="app.carregarEstoque()">Atualizar</button>
+        </div>
+        <div class="kpis">
+          <div class="kpi-card"><div class="klabel">Total em estoque</div><div class="kvalor" id="e-total">–</div><div class="ksub">unidades armazenadas</div></div>
+          <div class="kpi-card"><div class="klabel">SKUs rastreados</div><div class="kvalor" id="e-skus">–</div><div class="ksub">referências de produto</div></div>
+          <div class="kpi-card"><div class="klabel">Críticos</div><div class="kvalor" id="e-criticos">–</div><div class="ksub">abaixo do estoque mínimo</div></div>
+          <div class="kpi-card"><div class="klabel">Atenção</div><div class="kvalor" id="e-atencao">–</div><div class="ksub">próximo do ponto de reposição</div></div>
+        </div>
+        <div class="grid principal">
+          <div class="card">
+            <div class="card-cabecalho"><span class="card-chip">Distribuição</span><span class="card-titulo">Classificação de SKUs</span></div>
+            <div class="card-corpo"><canvas id="g-est-status2"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="card-cabecalho"><span class="card-chip">Localização</span><span class="card-titulo">Estoque por loja</span></div>
+            <div class="card-corpo"><canvas id="g-est-loja"></canvas></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-cabecalho"><span class="card-chip">Reposição</span><span class="card-titulo">Produtos com baixo estoque</span></div>
+          <div class="card-corpo"><div class="twrap"><table class="tabela" id="t-baixo"><thead><tr><th>Produto</th><th>Categoria</th><th>Loja</th><th>Atual</th><th>Mínimo</th><th>Status</th></tr></thead><tbody></tbody></table></div></div>
+        </div>
+      </section>
+
+      <!-- PÁGINA 5: LOJAS -->
+      <section class="page" id="page-lojas">
+        <div class="panel-head">
+          <h2 class="panel-titulo">Lojas</h2>
+          <p class="panel-sub">Rede comercial, localização e perfil de desempenho por unidade.</p>
+        </div>
+        <div class="toolbar">
+          <div class="filtro busca">
+            <label class="filtro-label">Buscar loja</label>
+            <input type="text" id="f-loja-busca" placeholder="Nome, cidade ou estado...">
+          </div>
+          <div class="filtro">
+            <label class="filtro-label">Tipo</label>
+            <select id="f-loja-tipo"><option value="">Todos os tipos</option></select>
+          </div>
+          <div class="filtro">
+            <label class="filtro-label">Região</label>
+            <select id="f-loja-regiao"><option value="">Todas as regiões</option></select>
+          </div>
+          <button class="btn btn-primary" onclick="app.carregarLojas()">Aplicar</button>
+          <span class="contador" id="contador-lojas">0 lojas</span>
+        </div>
+        <div class="card">
+          <div class="card-cabecalho"><span class="card-chip">Rede</span><span class="card-titulo">Unidades cadastradas</span></div>
+          <div class="card-corpo"><div class="twrap"><table class="tabela" id="t-lojas-lista"><thead><tr><th>Loja</th><th>Tipo</th><th>Cidade / Estado</th><th>País</th><th>Região</th><th>Perfil</th><th>Status</th><th>Fonte</th></tr></thead><tbody></tbody></table></div></div>
+        </div>
+        <div class="grid principal">
+          <div class="card">
+            <div class="card-cabecalho"><span class="card-chip">Geografia</span><span class="card-titulo">Lojas por região</span></div>
+            <div class="card-corpo"><canvas id="g-lojas-regiao"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="card-cabecalho"><span class="card-chip">Segmento</span><span class="card-titulo">Lojas por tipo</span></div>
+            <div class="card-corpo"><canvas id="g-lojas-tipo"></canvas></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PÁGINA 6: TRANSPORTE -->
+      <section class="page" id="page-transporte">
+        <div class="panel-head">
+          <h2 class="panel-titulo">Transporte</h2>
+          <p class="panel-sub">Fluxos operacionais, modais, transportadoras e status de cargas.</p>
+        </div>
+        <div class="toolbar">
+          <div class="filtro">
+            <label class="filtro-label">Modal</label>
+            <select id="f-log-modal"><option value="">Todos os modais</option><option value="RODOVIARIA">Rodoviária</option><option value="MARITIMA">Marítima</option><option value="AEREA">Aérea</option><option value="FLUVIAL">Fluvial</option></select>
+          </div>
+          <div class="filtro">
+            <label class="filtro-label">Status</label>
+            <select id="f-log-status"><option value="">Todos os status</option><option value="Entregue">Entregue</option><option value="Pendente">Pendente</option><option value="Em trânsito">Em trânsito</option><option value="Atrasado">Atrasado</option><option value="Cancelado">Cancelado</option><option value="Devolvido">Devolvido</option></select>
+          </div>
+          <button class="btn btn-primary" onclick="app.carregarLogistica()">Atualizar</button>
+        </div>
+        <div class="kpis">
+          <div class="kpi-card"><div class="klabel">Movimentos</div><div class="kvalor" id="log-movimentos">–</div><div class="ksub">operações registradas</div></div>
+          <div class="kpi-card"><div class="klabel">OTIF</div><div class="kvalor" id="log-otif">–</div><div class="ksub">entregas dentro do prazo</div></div>
+          <div class="kpi-card"><div class="klabel">Atraso médio</div><div class="kvalor" id="log-atraso">–</div><div class="ksub">dias de atraso médio</div></div>
+          <div class="kpi-card"><div class="klabel">Custo de frete</div><div class="kvalor" id="log-custo">–</div><div class="ksub">soma dos custos registrados</div></div>
+        </div>
+        <div class="grid principal">
+          <div class="card">
+            <div class="card-cabecalho"><span class="card-chip">Modal</span><span class="card-titulo">Distribuição de cargas</span></div>
+            <div class="card-corpo"><canvas id="g-log-modal"></canvas></div>
+          </div>
+          <div class="card">
+            <div class="card-cabecalho"><span class="card-chip">Situação</span><span class="card-titulo">Status das operações</span></div>
+            <div class="card-corpo"><canvas id="g-log-status"></canvas></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-cabecalho"><span class="card-chip">Operações</span><span class="card-titulo">Últimos movimentos de transporte</span></div>
+          <div class="card-corpo"><div class="twrap"><table class="tabela" id="t-logistica"><thead><tr><th>Envio</th><th>Prevista</th><th>Entrega</th><th>Produto</th><th>Categoria</th><th>Qtd.</th><th>Loja</th><th>Origem</th><th>Destino</th><th>Modal</th><th>Transportadora</th><th>Status</th><th>Custo</th></tr></thead><tbody></tbody></table></div></div>
+        </div>
+      </section>
+
+      <!-- PÁGINA 7: ANÁLISES -->
+      <section class="page" id="page-analises">
+        <div class="panel-head">
+          <h2 class="panel-titulo">Relatórios</h2>
+          <p class="panel-sub">Visão consolidada dos registros da plataforma.</p>
+        </div>
+        <div class="toolbar">
+          <span class="chip-info">Visão consolidada dos registros da plataforma</span>
+          <button class="btn btn-primary" onclick="app.carregarAnalises()">Atualizar visão</button>
+        </div>
+        <div class="kpis">
+          <div class="kpi-card"><div class="klabel">Período de vendas</div><div class="kvalor" id="an-periodo">–</div><div class="ksub">registros de 2024 a 2026</div></div>
+          <div class="kpi-card"><div class="klabel">Produtos analisados</div><div class="kvalor" id="an-produtos">–</div><div class="ksub">referências do catálogo oficial</div></div>
+          <div class="kpi-card"><div class="klabel">Linhas de estoque</div><div class="kvalor" id="an-estoque">–</div><div class="ksub">registros de movimentação</div></div>
+          <div class="kpi-card"><div class="klabel">Movimentos logísticos</div><div class="kvalor" id="an-logistica">–</div><div class="ksub">operações de transporte</div></div>
+        </div>
+        <div class="grid principal">
+          <div class="card largo">
+            <div class="card-cabecalho"><span class="card-chip">Receita</span><span class="card-titulo">Faturamento histórico</span></div>
+            <div class="card-corpo"><canvas id="g-an-vendas"></canvas></div>
+          </div>
+          <div class="card estreito">
+            <div class="card-cabecalho"><span class="card-chip">Estoque</span><span class="card-titulo">Evolução de unidades</span></div>
+            <div class="card-corpo"><canvas id="g-an-estoque"></canvas></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-cabecalho"><span class="card-chip">Detalhe</span><span class="card-titulo">Tabela analítica consolidada</span></div>
+          <div class="card-corpo"><div class="twrap"><table class="tabela" id="t-analise"><thead><tr><th>Data</th><th>Produto</th><th>Categoria</th><th>Loja</th><th>Qtd. Vendida</th><th>Faturamento líquido</th><th>Canal</th><th>Status</th></tr></thead><tbody></tbody></table></div></div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Modal produto -->
+    <div class="modal" id="modal-produto">
+      <div class="modal-overlay" onclick="app.fecharProduto()"></div>
+      <div class="modal-card">
+        <button class="modal-fechar" onclick="app.fecharProduto()"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="3" x2="17" y2="17"/><line x1="17" y1="3" x2="3" y2="17"/></svg></button>
+        <div class="prod-grid">
+          <div class="prod-visual">
+            <div class="prod-imagem-box">
+              <img class="prod-img" id="pd-imagem" src="" alt="">
+              <div class="prod-fallback" id="pd-fallback">Sem imagem</div>
+            </div>
+            <div class="prod-imagem-tag" id="pd-categoria-tag"></div>
+          </div>
+          <div class="prod-conteudo">
+            <div class="prod-categoria" id="pd-cat"></div>
+            <h2 id="pd-modelo"></h2>
+            <div class="prod-sku" id="pd-sku"></div>
+            <div class="prod-linha">
+              <div class="prod-campo">
+                <span class="campo-rotulo">Preço</span>
+                <span class="campo-valor" id="pd-preco">–</span>
+              </div>
+              <div class="prod-campo">
+                <span class="campo-rotulo">Tipo de dado</span>
+                <span class="campo-valor" id="pd-tipo">–</span>
+              </div>
+              <div class="prod-campo">
+                <span class="campo-rotulo">Disponibilidade</span>
+                <span class="campo-valor badge-disp" id="pd-disp">–</span>
+              </div>
+            </div>
+            <div class="prod-espec" id="pd-espec"></div>
+            <div class="prod-resumo">
+              <div class="prod-resumo-item"><span class="rotulo">Estoque atual</span><span class="valor" id="pd-estoque">–</span></div>
+              <div class="prod-resumo-item"><span class="rotulo">Unidades vendidas</span><span class="valor" id="pd-vendas">–</span></div>
+              <div class="prod-resumo-item"><span class="rotulo">Faturamento</span><span class="valor" id="pd-fat">–</span></div>
+            </div>
+            <div class="prod-acoes">
+              <a class="btn btn-outline" id="pd-link" target="_blank"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3l6 6"/><circle cx="12" cy="12" r="3"/></svg>Ver no site oficial</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>

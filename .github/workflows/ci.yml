@@ -1,0 +1,44 @@
+name: Data Quality CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: cannondale
+        ports: ["5433:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: |
+          pip install pandas psycopg2-binary
+
+      - name: Apply schema & seeds
+        run: |
+          for f in database/schema/01_create_schema.sql database/seeds/00_seed_dim_data.sql database/seeds/01_seed_produtos.sql database/seeds/02_seed_variantes.sql database/seeds/03_seed_imagens.sql database/seeds/04_seed_lojas.sql database/seeds/05_seed_transportadoras.sql database/seeds/06_seed_clientes.sql database/seeds/07_generate_estoque.sql database/seeds/08_generate_vendas.sql database/seeds/09_generate_logistica.sql; do
+            psql -h localhost -p 5433 -U postgres -d cannondale -f "$f"
+          done
+
+      - name: Run validation
+        run: python etl/validate_data.py

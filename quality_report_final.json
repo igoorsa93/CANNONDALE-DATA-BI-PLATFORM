@@ -1,0 +1,175 @@
+{
+  "timestamp": "2026-10-09T17:05:21.408262",
+  "tests": [
+    {
+      "name": "contexto_total_produtos",
+      "passed": true,
+      "message": "Total produtos: 56",
+      "details": null
+    },
+    {
+      "name": "contexto_precos_validos",
+      "passed": true,
+      "message": "Todos os preços válidos",
+      "details": null
+    },
+    {
+      "name": "contexto_nomes_nao_vazios",
+      "passed": true,
+      "message": "Todos têm nomes",
+      "details": null
+    },
+    {
+      "name": "contexto_urls_validas",
+      "passed": true,
+      "message": "Todas as URLs válidas",
+      "details": null
+    },
+    {
+      "name": "contexto_sem_duplicatas",
+      "passed": true,
+      "message": "Sem duplicatas",
+      "details": null
+    },
+    {
+      "name": "vendas_total_registros",
+      "passed": true,
+      "message": "Total vendas: 16743",
+      "details": null
+    },
+    {
+      "name": "vendas_produtos_existem",
+      "passed": true,
+      "message": "Todas referenciam produtos válidos",
+      "details": null
+    },
+    {
+      "name": "vendas_lojas_existem",
+      "passed": true,
+      "message": "Todas referenciam lojas válidas",
+      "details": null
+    },
+    {
+      "name": "vendas_calculo_bruto",
+      "passed": true,
+      "message": "Cálculos corretos",
+      "details": null
+    },
+    {
+      "name": "vendas_calculo_liquido",
+      "passed": true,
+      "message": "Cálculos corretos",
+      "details": null
+    },
+    {
+      "name": "estoque_total_registros",
+      "passed": true,
+      "message": "Total registros: 329392",
+      "details": null
+    },
+    {
+      "name": "estoque_referencias_validas",
+      "passed": true,
+      "message": "Todas as referências válidas",
+      "details": null
+    },
+    {
+      "name": "estoque_calculo_correto",
+      "passed": true,
+      "message": "Cálculos corretos (estoque_atual = inicial + entradas - saidas)",
+      "details": null
+    },
+    {
+      "name": "estoque_sem_negativos",
+      "passed": true,
+      "message": "Sem estoque negativo",
+      "details": null
+    },
+    {
+      "name": "estoque_status_validos",
+      "passed": true,
+      "message": "Todos os status válidos",
+      "details": null
+    },
+    {
+      "name": "estoque_vendas_consistentes",
+      "passed": true,
+      "message": "Saidas no estoque = Quantidade vendida",
+      "details": {
+        "estoque_saidas": 77876,
+        "vendas_quantidade": 77876.0
+      }
+    },
+    {
+      "name": "lojas_total",
+      "passed": true,
+      "message": "Total lojas: 173",
+      "details": null
+    },
+    {
+      "name": "lojas_com_coordenadas",
+      "passed": true,
+      "message": "Todas têm coordenadas",
+      "details": null
+    },
+    {
+      "name": "lojas_estados_brasil_validos",
+      "passed": true,
+      "message": "Todos estados brasileiros válidos",
+      "details": null
+    },
+    {
+      "name": "logistica_total",
+      "passed": true,
+      "message": "Total registros: 2008",
+      "details": null
+    },
+    {
+      "name": "logistica_modais_validos",
+      "passed": true,
+      "message": "Todos os modais válidos",
+      "details": null
+    },
+    {
+      "name": "logistica_produtos_existem",
+      "passed": true,
+      "message": "Todos referenciam produtos válidos",
+      "details": null
+    },
+    {
+      "name": "logistica_quantidade_positiva",
+      "passed": true,
+      "message": "Todas quantidades positivas",
+      "details": null
+    },
+    {
+      "name": "imagens_total",
+      "passed": true,
+      "message": "Total imagens: 105 (esperado: 105)",
+      "details": null
+    },
+    {
+      "name": "imagens_status_ok",
+      "passed": true,
+      "message": "Imagens OK: 105 (esperado: 105)",
+      "details": null
+    },
+    {
+      "name": "imagens_produtos_cobertos",
+      "passed": true,
+      "message": "Produtos com imagem: 32 (esperado: 32)",
+      "details": null
+    },
+    {
+      "name": "imagens_sem_duplicatas_hash",
+      "passed": true,
+      "message": "Sem duplicatas por hash",
+      "details": null
+    }
+  ],
+  "summary": {
+    "pass": 27,
+    "fail": 0,
+    "total": 27
+  }
+}

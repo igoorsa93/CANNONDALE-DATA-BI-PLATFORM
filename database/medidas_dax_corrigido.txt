@@ -1,0 +1,182 @@
+# MEDIDAS DAX - CANNONDALE DATA PLATFORM (Schema: core)
+# Model: core[dim_data], core[dim_loja], core[dim_loja_resumo], core[dim_produto], core[fato_estoque], core[fato_vendas]
+
+# ============================================================
+# VENDAS
+# ============================================================
+
+Total Receita = 
+SUM(core[fato_vendas][valor_liquido])
+
+Total Unidades = 
+SUM(core[fato_vendas][quantidade])
+
+Total Pedidos = 
+DISTINCTCOUNT(core[fato_vendas][id_venda])
+
+Ticket Médio = 
+DIVIDE([Total Receita], [Total Unidades])
+
+# ============================================================
+# TEMPO
+# ============================================================
+
+Receita Ano Atual = 
+CALCULATE(
+    [Total Receita],
+    FILTER(ALL(core[dim_data]), core[dim_data][ano] = YEAR(TODAY()))
+)
+
+Receita Ano Anterior = 
+CALCULATE(
+    [Total Receita],
+    SAMEPERIODLASTYEAR(core[dim_data][data])
+)
+
+Crescimento % = 
+DIVIDE([Receita Ano Atual] - [Receita Ano Anterior], [Receita Ano Anterior])
+
+Receita YTD = 
+TOTALYTD([Total Receita], core[dim_data][data])
+
+Receita PYTD = 
+CALCULATE(
+    [Receita YTD],
+    SAMEPERIODLASTYEAR(core[dim_data][data])
+)
+
+Receita Mês Atual = 
+CALCULATE(
+    [Total Receita],
+    FILTER(ALL(core[dim_data]), 
+        core[dim_data][ano] = YEAR(TODAY()) && 
+        core[dim_data][mes] = MONTH(TODAY()))
+)
+
+Receita Mês Anterior = 
+CALCULATE(
+    [Total Receita],
+    DATEADD(core[dim_data][data], -1, MONTH)
+)
+
+Variação Mensal % = 
+DIVIDE([Receita Mês Atual] - [Receita Mês Anterior], [Receita Mês Anterior])
+
+# ============================================================
+# ESTOQUE
+# ============================================================
+
+Estoque Atual = 
+CALCULATE(
+    SUM(core[fato_estoque][estoque_final]),
+    LASTDATE(core[dim_data][data])
+)
+
+Estoque Médio = 
+AVERAGE(core[fato_estoque][estoque_final])
+
+Giro de Estoque = 
+DIVIDE([Total Unidades], [Estoque Médio])
+
+Cobertura (dias) = 
+DIVIDE([Estoque Atual] * 30, [Total Unidades])
+
+% SKU Ruptura = 
+DIVIDE(
+    CALCULATE(COUNTROWS(core[fato_estoque]), core[fato_estoque][classificacao] = "Ruptura"),
+    COUNTROWS(core[fato_estoque])
+)
+
+% SKU Crítico = 
+DIVIDE(
+    CALCULATE(COUNTROWS(core[fato_estoque]), core[fato_estoque][classificacao] = "Crítico"),
+    COUNTROWS(core[fato_estoque])
+)
+
+% SKU Atenção = 
+DIVIDE(
+    CALCULATE(COUNTROWS(core[fato_estoque]), core[fato_estoque][classificacao] = "Atenção"),
+    COUNTROWS(core[fato_estoque])
+)
+
+% SKU Normal = 
+DIVIDE(
+    CALCULATE(COUNTROWS(core[fato_estoque]), core[fato_estoque][classificacao] = "Normal"),
+    COUNTROWS(core[fato_estoque])
+)
+
+% SKU Excesso = 
+DIVIDE(
+    CALCULATE(COUNTROWS(core[fato_estoque]), core[fato_estoque][classificacao] = "Excesso"),
+    COUNTROWS(core[fato_estoque])
+)
+
+# ============================================================
+# LOJA
+# ============================================================
+
+Receita por Loja = 
+CALCULATE(
+    [Total Receita],
+    ALLEXCEPT(core[dim_loja], core[dim_loja][nome_loja])
+)
+
+Receita por Cidade = 
+CALCULATE(
+    [Total Receita],
+    ALLEXCEPT(core[dim_loja], core[dim_loja][cidade])
+)
+
+Receita por Estado = 
+CALCULATE(
+    [Total Receita],
+    ALLEXCEPT(core[dim_loja], core[dim_loja][estado])
+)
+
+Total Vendas Loja = 
+SUM(core[dim_loja_resumo][total_vendas])
+
+Total Estoque Loja = 
+SUM(core[dim_loja_resumo][total_estoque])
+
+Ticket Médio por Loja = 
+DIVIDE([Total Vendas Loja], [Total Unidades])
+
+Top 5 Lojas = 
+TOPN(5, ALL(core[dim_loja][nome_loja]), [Receita por Loja], DESC)
+
+# ============================================================
+# CATEGORIA / PRODUTO
+# ============================================================
+
+Receita por Categoria = 
+CALCULATE(
+    [Total Receita],
+    ALLEXCEPT(core[dim_produto], core[dim_produto][categoria])
+)
+
+% Receita por Categoria = 
+DIVIDE([Receita por Categoria], [Total Receita])
+
+Receita por Produto = 
+CALCULATE(
+    [Total Receita],
+    ALLEXCEPT(core[dim_produto], core[dim_produto][modelo])
+)
+
+Top 5 Produtos = 
+TOPN(5, ALL(core[dim_produto][modelo]), [Receita por Produto], DESC)
+
+# ============================================================
+# CARDS FORMATADOS
+# ============================================================
+
+Card_Receita_Total = FORMAT([Total Receita], "R$ #,##0.00")
+Card_Unidades = FORMAT([Total Unidades], "#,##0")
+Card_Ticket_Medio = FORMAT([Ticket Médio], "R$ #,##0.00")
+Card_Crescimento_YoY = FORMAT([Crescimento %], "+0.00%;-0.00%")
+Card_Estoque_Atual = FORMAT([Estoque Atual], "#,##0")
+Card_Ruptura = FORMAT([% SKU Ruptura], "0.00%")
+Card_Critico = FORMAT([% SKU Crítico], "0.00%")
+Card_Giro_Estoque = FORMAT([Giro de Estoque], "0.00x")
+Card_Cobertura = FORMAT([Cobertura (dias)], "0 dias")

@@ -1,0 +1,155 @@
+{
+  "timestamp": "2026-10-07T10:07:57.399353",
+  "tests": [
+    {
+      "name": "produtos_sem_duplicatas_salsify",
+      "passed": true,
+      "message": "No duplicate salsify_ids",
+      "details": {
+        "duplicates": []
+      }
+    },
+    {
+      "name": "produtos_nome_nao_vazio",
+      "passed": true,
+      "message": "All products have names",
+      "details": null
+    },
+    {
+      "name": "produtos_preco_valido",
+      "passed": true,
+      "message": "All products have valid prices",
+      "details": null
+    },
+    {
+      "name": "produtos_categoria_valida",
+      "passed": true,
+      "message": "All categories valid",
+      "details": {
+        "categories": [
+          "Electric",
+          "Mountain",
+          "Road"
+        ]
+      }
+    },
+    {
+      "name": "produtos_url_valida",
+      "passed": true,
+      "message": "All URLs valid",
+      "details": null
+    },
+    {
+      "name": "produtos_codigo_modelo_presente",
+      "passed": true,
+      "message": "All have model codes",
+      "details": null
+    },
+    {
+      "name": "imagens_vinculadas_produto",
+      "passed": true,
+      "message": "All images linked to products",
+      "details": null
+    },
+    {
+      "name": "produtos_com_imagem",
+      "passed": true,
+      "message": "All products have images",
+      "details": null
+    },
+    {
+      "name": "imagem_principal_unica",
+      "passed": true,
+      "message": "Each product has exactly 1 principal image",
+      "details": {
+        "issues": []
+      }
+    },
+    {
+      "name": "arquivos_imagem_existem",
+      "passed": true,
+      "message": "All image files exist locally",
+      "details": null
+    },
+    {
+      "name": "vendas_produto_existente",
+      "passed": true,
+      "message": "All sales reference valid products",
+      "details": null
+    },
+    {
+      "name": "vendas_loja_existente",
+      "passed": true,
+      "message": "All sales reference valid stores",
+      "details": null
+    },
+    {
+      "name": "vendas_calculo_bruto_correto",
+      "passed": true,
+      "message": "All valor_bruto calculations correct",
+      "details": null
+    },
+    {
+      "name": "vendas_calculo_liquido_correto",
+      "passed": true,
+      "message": "All valor_liquido calculations correct",
+      "details": null
+    },
+    {
+      "name": "vendas_quantidade_positiva",
+      "passed": true,
+      "message": "All quantities positive",
+      "details": null
+    },
+    {
+      "name": "estoque_referencias_validas",
+      "passed": true,
+      "message": "All inventory references valid",
+      "details": null
+    },
+    {
+      "name": "estoque_calculo_correto",
+      "passed": false,
+      "message": "243 inventory records with incorrect calculation",
+      "details": null
+    },
+    {
+      "name": "estoque_nao_negativo",
+      "passed": true,
+      "message": "No negative stock",
+      "details": null
+    },
+    {
+      "name": "estoque_vendas_consistentes",
+      "passed": false,
+      "message": "Saidas in inventory (645) != Sales quantity (414)",
+      "details": {
+        "estoque_vendas": 645,
+        "sales_quantidade": 414
+      }
+    },
+    {
+      "name": "estoque_classificacao_valida",
+      "passed": true,
+      "message": "All classifications valid",
+      "details": null
+    },
+    {
+      "name": "lojas_com_coordenadas",
+      "passed": true,
+      "message": "All stores have coordinates",
+      "details": null
+    },
+    {
+      "name": "lojas_brasil_estados_validos",
+      "passed": true,
+      "message": "All BR states valid",
+      "details": null
+    }
+  ],
+  "summary": {
+    "pass": 20,
+    "fail": 2,
+    "total": 22
+  }
+}
