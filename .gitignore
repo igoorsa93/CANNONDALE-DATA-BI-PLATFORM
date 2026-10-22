@@ -8,10 +8,18 @@ __pycache__/
 Thumbs.db
 desktop.ini
 
-# Dados grandes / temporários
-data/images/*.jpg
-data/images/*.png
+# Dados grandes / temporários / sensíveis
+data/
+backups/
+excel/
 *.tmp
+*.sql
+*.xlsx
+*.csv
+*.json
+quality_report*.json
+reports/
+Imagens/
 
 # IDE
 .vscode/
